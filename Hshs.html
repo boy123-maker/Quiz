@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Online Publik</title>
+<style>
+body { font-family: Arial, sans-serif; text-align: center; background: #f7f7f7; }
+.container { margin-top: 50px; }
+h1 { color: #333; }
+#timer { font-size: 28px; color: #d9534f; margin-bottom: 15px; }
+iframe { width: 95%; height: 650px; border: 2px solid #ccc; border-radius: 10px; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Selamat Mengerjakan Quiz!</h1>
+<p>Waktu Anda terbatas. Selesaikan sebelum timer habis.</p>
+<div id="timer"></div>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdJvoRGR6taWbBtBI0SAQUziQzPd4qgC8fzsWvOfVRZxSarVA/viewform?usp=header"></iframe>
+</div>
+
+<script>
+// Set waktu quiz (contoh: 15 menit dari sekarang)
+var countDownDate = new Date().getTime() + 15*60*1000;
+
+var x = setInterval(function() {
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
+
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("timer").innerHTML = "Waktu Habis!";
+    document.querySelector("iframe").style.display = "none";
+  }
+}, 1000);
+</script>
+</body>
+</html>
